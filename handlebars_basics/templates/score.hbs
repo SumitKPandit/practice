@@ -1,0 +1,9 @@
+<button class="mdl-button">
+    {{#generateScore dogs language=language}}
+    {{correct}} {{language.correct}} | {{incorrect}} {{language.incorrect
+          }} | {{incomplete}} {{language.incomplete}}
+    {{/generateScore}}
+    <small>
+        Reset?
+    </small>
+</button>

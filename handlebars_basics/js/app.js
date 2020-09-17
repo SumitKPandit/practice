@@ -3,9 +3,7 @@
   renderDogs();
 
   function renderPage() {
-    let template = $("#index-template").html(),
-      compiled = Handlebars.compile(template),
-      rendered = compiled(window.language);
+    let rendered = App.templates.index(window.language);
     $("#main").html(rendered);
     $("#languageSwitch").click(function () {
       DogPack.switchLanguage();
@@ -13,10 +11,8 @@
   }
 
   function renderDogs() {
-    let template = $("#dogs-template").html(),
-      compiled = Handlebars.compile(template),
-      filteredDogs = DogPack.getFilteredDogs(DogPack.dogs),
-      rendered = compiled({
+    let filteredDogs = DogPack.getFilteredDogs(DogPack.dogs),
+      rendered = App.templates.dogs({
         dogs: DogPack.getPaginatedDogs(filteredDogs),
         language: window.language,
       });
@@ -27,12 +23,10 @@
   }
 
   function renderScore() {
-    let template = $("#score-template").html(),
-      compiled = Handlebars.compile(template),
-      rendered = compiled({
-        dogs: DogPack.dogs,
-        language: window.language,
-      });
+    let rendered = App.templates.score({
+      dogs: DogPack.dogs,
+      language: window.language,
+    });
     $("#score").html(rendered);
     $("#score")
       .find("small")
@@ -44,9 +38,7 @@
   }
 
   function renderPages(dogs) {
-    let template = $("#page-template").html(),
-      compiled = Handlebars.compile(template),
-      rendered = compiled({ dogs: dogs });
+    let rendered = App.templates.page({ dogs: dogs });
     $("#pagination").html(rendered);
   }
 
